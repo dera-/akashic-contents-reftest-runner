@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "lib": ["dom"],
+    "declaration": false,
+    "noImplicitAny": true,
+    "module": "commonjs",
+    "outDir": "lib",
+    "alwaysStrict": true,
+    "downlevelIteration": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}

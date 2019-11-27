@@ -1,0 +1,5 @@
+node_modules
+lib
+out
+!fixture/*/game/node_modules
+!fixture/*/game/node_modules/**/lib

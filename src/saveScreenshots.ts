@@ -13,7 +13,7 @@ const createWaiter = () => {
 	return { promise, resolve, reject };
 };
 
-module.exports = async(url: string, dir: string) => {
+module.exports = async (url: string, dir: string) => {
 	const contentWaiter = createWaiter();
 	const browser = await puppeteer.launch({
 		headless: true,

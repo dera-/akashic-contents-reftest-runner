@@ -10,8 +10,8 @@ const saveScreenshots = require("./saveScreenshots");
 
 const assertScreenshot = (expectedPath: string, targetPath: string) => {
 	// 予め用意しているスクリーンショットと画像を比較する時diffをどこまで許容するかの値
-	// このdiffの値域は0～1で、2つの画像でdiffがある領域の割合を示していて、閾値は0.1%に設定している
-	const screenshotDiffThreshold = 0.001;
+	// このdiffの値域は0～1で、2つの画像でdiffがある領域の割合を示していて、閾値は5%に設定している
+	const screenshotDiffThreshold = 0.05;
 	const expected = pngjs.PNG.sync.read(fs.readFileSync(expectedPath));
 	const actual = pngjs.PNG.sync.read(fs.readFileSync(targetPath));
 	const {width, height} = expected;
@@ -32,7 +32,7 @@ module.exports = async (targetDir: string) => {
 		}
 		await saveScreenshots(url, outputDir);
 		const imageFileNames = fs.readdirSync(outputDir);
-		for (let fileName of imageFileNames) {
+		for (const fileName of imageFileNames) {
 			console.log(`validate ${fileName}`);
 			assertScreenshot(
 				path.join(targetDir, "expected", fileName),

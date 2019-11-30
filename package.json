@@ -1,6 +1,6 @@
 {
   "name": "@dera-/akashic-contents-reftest-runner",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "akashicコンテンツの結合試験を行うためのライブラリ",
   "main": "lib/index.js",
   "scripts": {

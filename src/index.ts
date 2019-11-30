@@ -13,11 +13,16 @@ export function cli(argv: any): void {
 		.option("-m, --mode <mode>", `The port number to listen. default: test`)
 		.option("-o, --output <output>", `The host name of the server. default: ${process.cwd()}`)
 		.parse(argv);
-	if (! /^test|data$/.test(commander.mode)) {
+	if (!commander.mode) {
+		commander.mode = "test";
+	} else if (! /^test|data$/.test(commander.mode)) {
 		console.error("Please specify test or data.");
 		process.exit(1);
 	}
-	if (!commander.output || !fs.existsSync(path.join(commander.output, "game.json"))) {
+	if (!commander.output) {
+		commander.output = process.cwd();
+	}
+	if (!fs.existsSync(path.join(commander.output, "game.json"))) {
 		console.error("Please specify directroy included game.json");
 		process.exit(1);
 	}

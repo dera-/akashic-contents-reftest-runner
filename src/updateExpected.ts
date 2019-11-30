@@ -7,7 +7,6 @@ const saveScreenshots = require("./saveScreenshots");
 
 module.exports = async (targetDir: string) => {
 	try {
-		akashicCliServeModule.install();
 		console.log("start to get screenshots");
 		const url = await akashicCliServeModule.start(targetDir);
 		const outputDir = path.join(targetDir, "expected");

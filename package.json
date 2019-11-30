@@ -1,7 +1,7 @@
 {
-  "name": "akashic-contents-reftest-runner",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@dera-/akashic-contents-reftest-runner",
+  "version": "0.0.1",
+  "description": "akashicコンテンツの結合試験を行うためのライブラリ",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc -p .",
@@ -12,7 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/dera-/akashic-contents-reftest-runner.git"
   },
-  "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -30,7 +29,11 @@
     "typescript": "^3.6.4"
   },
   "dependencies": {
-    "@akashic/akashic-cli-serve": "^0.2.10",
+    "@akashic/akashic-cli-serve": "~0.2.10",
     "commander": "^4.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "@dera-:registry": "https://registry.npmjs.org/"
   }
 }

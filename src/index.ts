@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 import * as commander from "commander";
 
+const shell = require("shelljs");
 const run = require("./run");
 const updateExpected = require("./updateExpected");
 
@@ -9,9 +10,9 @@ export function cli(argv: any): void {
 	const ver = JSON.parse(fs.readFileSync(path.resolve(__dirname, "..", "package.json"), "utf8")).version;
 	commander
 		.version(ver)
-		.description("Development server for Akashic Engine to debug multiple-player games")
-		.option("-m, --mode <mode>", `The port number to listen. default: test`)
-		.option("-o, --output <output>", `The host name of the server. default: ${process.cwd()}`)
+		.description("integration test of specified akashic-content")
+		.option("-m, --mode <mode>", `specify execution mode(test or data). default: test`)
+		.option("-o, --output <output>", `specify directory path including game.json of target. default: ${process.cwd()}`)
 		.parse(argv);
 	if (!commander.mode) {
 		commander.mode = "test";
@@ -28,10 +29,15 @@ export function cli(argv: any): void {
 	}
 	Promise.resolve()
 	.then(() => {
+		const imgDirName = "reftest";
+		const imgDirPath = path.join(commander.output, imgDirName);
+		if (!fs.existsSync(imgDirPath)) {
+			shell.mkdir("-p", [imgDirPath]);
+		}
 		if (commander.mode === "data") {
-			return updateExpected(commander.output);
+			return updateExpected(commander.output, imgDirName);
 		} else {
-			return run(commander.output);
+			return run(commander.output, imgDirName);
 		}
 	})
 	.then(() => {

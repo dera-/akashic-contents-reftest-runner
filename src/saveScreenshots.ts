@@ -23,10 +23,10 @@ module.exports = async (url: string, dir: string) => {
 	const page = await browser.newPage();
 	page.on("console", async (msg) => {
 		const data = await Promise.all(msg.args().map((a) => a.jsonValue()));
-		// スクリーンショットがbase64のバイナリとしてconsole上に流れるので、デコードして保存する
 		if (data[0] === "akashic-contents-reftest:finish") {
 			contentWaiter.resolve();
 		} else if (data.length === 3 && data[0] === "akashic-contents-reftest:image") {
+			// スクリーンショットがbase64のバイナリとしてconsole上に流れるので、デコードして保存する
 			const decode = Buffer.from(data[2], "base64");
 			fs.writeFileSync(path.join(dir, data[1]), decode);
 			console.log(`${data[1]} is saved`);

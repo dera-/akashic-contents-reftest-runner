@@ -1,6 +1,6 @@
 {
   "name": "@dera-/akashic-contents-reftest-runner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "akashicコンテンツの結合試験を行うためのライブラリ",
   "main": "lib/index.js",
   "bin": {
@@ -19,22 +19,20 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@akashic/remark-preset-lint": "~0.1.1",
     "@types/get-port": "4.2.0",
     "@types/pixelmatch": "5.0.0",
     "@types/pngjs": "3.3.2",
     "@types/puppeteer": "1.20.2",
-    "get-port": "^5.0.0",
-    "pixelmatch": "^5.1.0",
-    "puppeteer": "^2.0.0",
-    "remark-cli": "^7.0.0",
-    "shelljs": "^0.8.3",
     "tslint": "^5.20.0",
     "typescript": "^3.6.4"
   },
   "dependencies": {
     "@akashic/akashic-cli-serve": "~0.2.10",
-    "commander": "^4.0.1"
+    "commander": "^4.0.1",
+    "get-port": "^5.0.0",
+    "pixelmatch": "^5.1.0",
+    "puppeteer": "^2.0.0",
+    "shelljs": "^0.8.3"
   },
   "files": [
     "bin",

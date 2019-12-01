@@ -11,13 +11,13 @@ export function cli(argv: any): void {
 	commander
 		.version(ver)
 		.description("integration test of specified akashic-content")
-		.option("-m, --mode <mode>", `specify execution mode(test or data). default: test`)
+		.option("-m, --mode <mode>", `specify execution mode(test or expected). default: test`)
 		.option("-o, --output <output>", `specify directory path including game.json of target. default: ${process.cwd()}`)
 		.parse(argv);
 	if (!commander.mode) {
 		commander.mode = "test";
-	} else if (! /^test|data$/.test(commander.mode)) {
-		console.error("Please specify test or data.");
+	} else if (! /^test|expected$/.test(commander.mode)) {
+		console.error("Please specify test or expected.");
 		process.exit(1);
 	}
 	if (!commander.output) {
@@ -34,7 +34,7 @@ export function cli(argv: any): void {
 		if (!fs.existsSync(imgDirPath)) {
 			shell.mkdir("-p", [imgDirPath]);
 		}
-		if (commander.mode === "data") {
+		if (commander.mode === "expected") {
 			return updateExpected(commander.output, imgDirName);
 		} else {
 			return run(commander.output, imgDirName);

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "akashicコンテンツの結合試験を行うためのライブラリ",
   "main": "lib/index.js",
+  "bin": {
+    "akashic-contents-reftest-runner": "./bin/run"
+  },
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc -p .",

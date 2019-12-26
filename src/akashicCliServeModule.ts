@@ -11,14 +11,14 @@ module.exports = {
 		console.log("akashic-cli-serve version: " + execSync(`${akashicCliServePath} --version`));
 		childProcess = spawn(
 			akashicCliServePath,
-			["-p", port.toString()],
+			["-p", port.toString(), "--debug-playlog", "playlog.json"],
 			{cwd: contentPath}
 		);
 		childProcess.stdout.on("data", (data: any) => {
 			console.log(`akashic-cli-serve stdout: ${data}`);
 		});
 		console.log("setup server. port:" + port);
-		return `http://localhost:${port}`;
+		return `http://localhost:${port}/public?playId=0&mode=replay`;
 	},
 	stop: (): Promise<void> => {
 		if (!childProcess) {
